@@ -1,0 +1,47 @@
+import random as rd
+import array
+
+#Jumlah Karakter Maksimal Password  
+Panjang_Maksimal = 8
+
+#Jenis Karakter Maksimal Password  
+Simbol = ['@', '#', '$', '%', '=', ':', '?', '.', '/', '|', '~', '>', 
+           '*', '(', ')', '<']
+
+Angka = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']  
+
+Huruf_Kecil = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+                     'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q',
+                     'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+                     'z']
+Huruf_Kapital = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 
+                     'I', 'J', 'K', 'M', 'N', 'O', 'p', 'Q',
+                     'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+                     'Z']
+  
+# Kombinasi semua karakter array
+Daftar_Gabungan = Angka + Huruf_Kapital + Huruf_Kecil + Simbol
+  
+# memilih random dari masing-masing karakter
+rand_digit = rd.choice(Angka)
+rand_upper = rd.choice(Huruf_Kapital)
+rand_lower = rd.choice(Huruf_Kecil)
+rand_symbol = rd.choice(Simbol)
+  
+# Menyatukan semua pilihan diatas untuk menjadi password
+temp_pass = rand_digit + rand_upper + rand_lower + rand_symbol
+  
+
+for x in range(Panjang_Maksimal - 4):
+    temp_pass = temp_pass + rd.choice(Daftar_Gabungan)
+  
+    # mengkonversi password sementara menjadi array untuk menghindari pasword dapat mudah ditebak
+    temp_pass_list = array.array('u', temp_pass)
+    rd.shuffle(temp_pass_list)
+  
+password = ''
+for x in temp_pass_list:
+        password = password + x
+          
+# password berhasil menjadi 8 karakter
+print(password)
